@@ -21,7 +21,7 @@ const NavBar = () => {
 
 
     return (
-        <nav className="sticky top-0 z-50 flex flex-wrap justify-between items-center border-b gap-x-6 px-6 md:px-12 lg:px-24 h-20 bg-[#190e23]">
+        <nav className="sticky top-0 z-50 flex flex-wrap justify-between items-center gap-x-6 px-6 md:px-12 lg:px-24 h-20 bg-[#190e23]">
             {/* Hamburger button (mobile only) */}
             <button
                 className="md:hidden text-white text-3xl"

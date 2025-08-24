@@ -2,4 +2,9 @@
 
 body {
     background-color: black;
+    @apply text-white;
+}
+
+.border {
+    @apply border-gray-700;
 }

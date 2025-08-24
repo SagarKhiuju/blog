@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import fs from 'fs';
 import path from 'path';
+import slugify from 'slugify';
 
 export async function POST(req: Request) {
   try {
@@ -30,9 +31,12 @@ export async function POST(req: Request) {
       imageUrl = '/uploads/' + filename;
     }
 
+    const slug = slugify(title, { lower: true, strict : true });
+
     const news = await prisma.news.create({
       data: {
         title,
+        slug,
         content,
         imageUrl: imageUrl ?? null,
       },
@@ -40,6 +44,30 @@ export async function POST(req: Request) {
 
     return new Response(JSON.stringify(news), { status: 201 });
   } catch (error: any) {
+    console.error(error);
+    return new Response(JSON.stringify({ message: 'Internal server error.' }), { status: 500 });
+  }
+}
+
+export async function GET(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const random = searchParams.get('random');
+
+    if (random) {
+      const randomNews = await prisma.$queryRawUnsafe
+        (`SELECT * FROM "News" ORDER BY RANDOM() LIMIT 1`);
+      return new Response(JSON.stringify(randomNews), { status: 200 });
+    }
+
+    const AllNews = await prisma.news.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return new Response(JSON.stringify(AllNews), { status: 200 });
+  }
+  catch (error: any) {
     console.error(error);
     return new Response(JSON.stringify({ message: 'Internal server error.' }), { status: 500 });
   }

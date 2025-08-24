@@ -65,7 +65,6 @@ const AddBlog = () => {
 
         try {
             await axios.post('/api/blog', formData, {
-                headers: { "Content-Type": "multipart/form-data" },
                 onUploadProgress: (progressEvent) => {
                     const percentCompleted = Math.round(
                         (progressEvent.loaded * 100) / (progressEvent.total || 1)
@@ -123,7 +122,7 @@ const AddBlog = () => {
                         type="text"
                         {...register('title')}
                         disabled={isSubmitting}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                         placeholder="Enter blog title"
                     />
                     {errors.title?.message && (
@@ -144,7 +143,7 @@ const AddBlog = () => {
                         rows={4}
                         {...register('content')}
                         disabled={isSubmitting}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                         placeholder="Write the blog content here"
                     />
                     {errors.content?.message && (
