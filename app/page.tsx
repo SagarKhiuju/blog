@@ -108,7 +108,7 @@ export default function Home() {
         {/*Random Article*/}
         <AnimatedSection delay={0.8}>
           <div className="bg-gradient-to-b from-black to-red-600 p-6 md:p-10 rounded-xl shadow-lg h-full">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">Recommended Articles</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4">Latest Articles</h2>
             {articles.map((article) => (
               <div key={article.id} className="flex border rounded overflow-hidden shadow-sm p-4 mb-4">
                 <Link href={`/blog/${article.slug}`} className="flex w-full">

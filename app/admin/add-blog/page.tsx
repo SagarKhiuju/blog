@@ -15,10 +15,11 @@ const schema = z.object({
         .any()
         .optional()
         .refine(
-            (file) =>
-                !file || (file[0] && ['image/jpeg', 'image/png', 'image/webp'].includes(file[0].type)),
+            (file) => 
+                !file?.length || ['image/jpeg', 'image/png', 'image/webp'].includes(file[0]?.type),
             'Only JPG, PNG, or WEBP images are allowed'
         ),
+
 
 });
 
