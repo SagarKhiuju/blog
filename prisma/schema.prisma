@@ -23,3 +23,14 @@ model News {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Projects {
+  id         Int      @id @default(autoincrement())
+  title      String
+  slug       String   @unique
+  content    String   @db.Text
+  projectUrl String
+  imageUrl   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
